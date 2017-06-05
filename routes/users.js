@@ -1,12 +1,24 @@
 var express = require('express');
 var router = express.Router();
 var URL = require('url');
-var User = require('./user');
+var userDao = require('../dao/userDao');
+
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
+
+router.get('/v1/user/add',function (req,res,next) {
+  try
+  {
+    console.log("start1");
+    userDao.add(req,res,next);
+  }catch (err){
+    res.send(err.message);
+  }
+});
+
 
 router.get('/getUserInfo', function(req, res, next) {
 
